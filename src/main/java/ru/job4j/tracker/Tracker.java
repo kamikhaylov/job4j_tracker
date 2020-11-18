@@ -26,12 +26,12 @@ public class Tracker {
         Item[] itemsByKey = new Item[size];
         int newIndex = 0;
         for (int index = 0; index < itemsByKey.length; index++) {
-            if (key.equals(items[index])) {
+            if (key.equals(items[index].getName())) {
                 itemsByKey[newIndex] = items[index];
                 newIndex++;
             }
         }
-        return Arrays.copyOf(itemsByKey, newIndex + 1);
+        return Arrays.copyOf(itemsByKey, newIndex);
     }
 
     public boolean replace(int id, Item item) {
