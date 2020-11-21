@@ -6,7 +6,7 @@ import ru.job4j.tracker.Tracker;
 public class DeleteItemActions implements UserAction {
     @Override
     public String name() {
-        return "=== Delete item ===";
+        return "Delete item";
     }
 
     @Override

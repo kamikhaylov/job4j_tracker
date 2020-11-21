@@ -6,7 +6,7 @@ import ru.job4j.tracker.Tracker;
 public class ExitActions implements UserAction {
     @Override
     public String name() {
-        return "=== Exit ===";
+        return "Exit";
     }
 
     @Override
