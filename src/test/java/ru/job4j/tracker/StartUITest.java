@@ -27,7 +27,7 @@ public class StartUITest {
         assertThat(replaced.getName(), is("replaced item"));
     }
     @Test
-    public void whenDeletItem() {
+    public void whenDeleteItem() {
         Tracker tracker = new Tracker();
         Item item = new Item("new item");
         tracker.add(item);
