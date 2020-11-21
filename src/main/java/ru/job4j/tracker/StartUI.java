@@ -22,7 +22,7 @@ public class StartUI {
                                 new DeleteItemActions(output),
                                 new FindItemByIdActions(output),
                                 new FindItemsByNameActions(output),
-                                new ExitActions()};
+                                new ExitAction()};
         new StartUI(output).init(input, tracker, actions);
     }
 
