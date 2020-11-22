@@ -126,7 +126,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Output output = new StubOutput();
         Item item = tracker.add(new Item("Find items by name"));
-        Input in = new StubInput(new String[]{"0", String.valueOf(item.getId()), "1"});
+        Input in = new StubInput(new String[]{"0", item.getName(), "1"});
         UserAction[] actions = {
                 new FindItemsByNameActions(output),
                 new ExitAction()
@@ -137,7 +137,7 @@ public class StartUITest {
                         + "0. Find items by name" + System.lineSeparator()
                         + "1. Exit" + System.lineSeparator()
                         + "=== Find items by name ===" + System.lineSeparator()
-                        + "Item with id 1 not found" + System.lineSeparator()
+                        + item + System.lineSeparator()
                         + "Menu." + System.lineSeparator()
                         + "0. Find items by name" + System.lineSeparator()
                         + "1. Exit" + System.lineSeparator()
