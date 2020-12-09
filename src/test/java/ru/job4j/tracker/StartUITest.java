@@ -143,7 +143,7 @@ public class StartUITest {
     }
 
     @Test
-    public void FindItemByIdActions() {
+    public void findItemByIdActions() {
         Tracker tracker = new Tracker();
         Output output = new StubOutput();
         Item item = tracker.add(new Item("Find item by Id"));
@@ -175,8 +175,8 @@ public class StartUITest {
         actions.add(new ExitAction());
         new StartUI(output).init(in, tracker, actions);
         assertThat(output.toString(), is(
-                "Menu." + System.lineSeparator() +
-                        "0. Exit" + System.lineSeparator()
+                "Menu." + System.lineSeparator()
+                        + "0. Exit" + System.lineSeparator()
         ));
     }
 
