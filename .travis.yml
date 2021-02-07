@@ -15,7 +15,7 @@ after_success:
 notifications:
   email:
     recipients:
-      -kotmix@bk.ru
+      -konstantmik@yandex.ru
     on_success: never # default: change
     on_failure: always # defa,ult: always
 env:
