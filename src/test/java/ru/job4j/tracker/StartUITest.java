@@ -13,7 +13,8 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertNull;
 
 public class StartUITest {
     @Test
@@ -24,7 +25,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         CreateAction createAction = new CreateAction(output);
         createAction.execute(input, tracker);
-        Item created = (Item) tracker.findAll().get(0);
+        Item created = tracker.findAll().get(0);
         Item expected = new Item("Fix PC");
         assertThat(created.getName(), is(expected.getName()));
     }
