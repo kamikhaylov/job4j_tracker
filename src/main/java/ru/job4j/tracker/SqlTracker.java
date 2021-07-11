@@ -50,8 +50,6 @@ public class SqlTracker implements Store {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(item);
-        System.out.println(item);
         return item;
     }
 
