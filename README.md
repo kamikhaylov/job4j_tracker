@@ -19,8 +19,8 @@
 ![img_1.png](pictures/menu.png)
 
 ## Содержимое проекта
-- Главное меню: <a href="https://github.com/kamikhaylov/job4j_tracker/blob/master/src/main/java/ru/job4j/tracker/StartUI.java">ru.job4j.tracker.StartUI.java</a>
-- Модель данных: <a href="https://github.com/kamikhaylov/job4j_tracker/blob/master/src/main/java/ru/job4j/tracker/Item.java">ru.job4j.tracker.Item.java</a>
+- Главное меню: <a href="https://github.com/kamikhaylov/job4j_tracker/blob/master/src/main/java/ru/job4j/memTracker/StartUI.java">ru.job4j.memTracker.StartUI.java</a>
+- Модель данных: <a href="https://github.com/kamikhaylov/job4j_tracker/blob/master/src/main/java/ru/job4j/memTracker/Item.java">ru.job4j.memTracker.Item.java</a>
 
 ## Ключевые этапы разработки
 - Проектирование модели данных

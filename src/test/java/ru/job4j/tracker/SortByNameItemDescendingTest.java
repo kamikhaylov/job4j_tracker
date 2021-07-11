@@ -28,14 +28,14 @@ public class SortByNameItemDescendingTest {
 
     @Test
     public void whenSortByNameItemDescendingTracker() {
-        Tracker tracker = new Tracker();
+        MemTracker memTracker = new MemTracker();
         Item item1 = new Item("3");
         Item item2 = new Item("1");
         Item item3 = new Item("2");
-        tracker.add(item1);
-        tracker.add(item2);
-        tracker.add(item3);
-        List<Item> items = tracker.findAll();
+        memTracker.add(item1);
+        memTracker.add(item2);
+        memTracker.add(item3);
+        List<Item> items = memTracker.findAll();
         List<Item> expected  = Arrays.asList(item1, item3, item2);
         Collections.sort(items, new SortByNameItemDescending());
         assertThat(items, is(expected));
