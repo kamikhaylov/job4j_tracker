@@ -2,7 +2,6 @@ package ru.job4j.tracker;
 
 import java.io.InputStream;
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -14,6 +13,11 @@ public class SqlTracker implements Store {
     public SqlTracker() {
         this.properties = new Properties();
         init();
+    }
+
+    public SqlTracker(Connection connection) {
+        this.properties = new Properties();
+        this.connection = connection;
     }
 
     @Override
