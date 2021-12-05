@@ -73,4 +73,14 @@ public class MemTracker implements Store {
     public void close() throws Exception {
 
     }
+
+    public static void main(String[] args) {
+        MemTracker mem = new MemTracker();
+        long time = System.currentTimeMillis();
+        for (int i = 1; i < 1000000; i++) {
+            new Item("item" + i);
+        }
+        long time2 = System.currentTimeMillis();
+        System.out.println(time2 - time);
+    }
 }
