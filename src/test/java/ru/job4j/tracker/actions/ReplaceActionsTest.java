@@ -1,12 +1,12 @@
 package ru.job4j.tracker.actions;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 import ru.job4j.tracker.Item;
 import ru.job4j.tracker.MemTracker;
 import ru.job4j.tracker.Store;
@@ -32,12 +32,12 @@ public class ReplaceActionsTest {
     @Mock
     private Input input;
 
-    @BeforeClass
+    @BeforeEach
     private void before() {
         MockitoAnnotations.openMocks(this);
     }
 
-    @AfterMethod
+    @AfterEach
     private void after() {
         Mockito.reset(input);
     }
@@ -55,12 +55,12 @@ public class ReplaceActionsTest {
         userAction.execute(input, tracker);
         List<Item> result = tracker.findAll();
 
-        Assert.assertNotNull(result);
-        Assert.assertEquals(result.size(), 1);
-        Assert.assertNotNull(result.get(0));
-        Assert.assertNotNull(result.get(0).getName());
-        Assert.assertEquals(result.get(0).getName(), ITEM_NAME);
-        Assert.assertEquals(out.toString(), EXPECTED_SUCCESS);
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(result.size(), 1);
+        Assertions.assertNotNull(result.get(0));
+        Assertions.assertNotNull(result.get(0).getName());
+        Assertions.assertEquals(result.get(0).getName(), ITEM_NAME);
+        Assertions.assertEquals(out.toString(), EXPECTED_SUCCESS);
     }
 
     @Test
@@ -73,11 +73,11 @@ public class ReplaceActionsTest {
         userAction.execute(input, tracker);
         List<Item> result = tracker.findAll();
 
-        Assert.assertNotNull(result);
-        Assert.assertEquals(result.size(), 1);
-        Assert.assertNotNull(result.get(0));
-        Assert.assertNotNull(result.get(0).getName());
-        Assert.assertEquals(result.get(0).getName(), ITEM_NAME);
-        Assert.assertEquals(out.toString(), EXPECTED_FAIL);
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(result.size(), 1);
+        Assertions.assertNotNull(result.get(0));
+        Assertions.assertNotNull(result.get(0).getName());
+        Assertions.assertEquals(result.get(0).getName(), ITEM_NAME);
+        Assertions.assertEquals(out.toString(), EXPECTED_FAIL);
     }
 }

@@ -1,12 +1,12 @@
 package ru.job4j.tracker.actions;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 import ru.job4j.tracker.Item;
 import ru.job4j.tracker.MemTracker;
 import ru.job4j.tracker.Store;
@@ -28,12 +28,12 @@ public class FindItemByIdActionsTest {
     @Mock
     private Input input;
 
-    @BeforeClass
+    @BeforeEach
     private void before() {
         MockitoAnnotations.openMocks(this);
     }
 
-    @AfterMethod
+    @AfterEach
     private void after() {
         Mockito.reset(input);
     }
@@ -51,7 +51,7 @@ public class FindItemByIdActionsTest {
 
         userAction.execute(input, tracker);
 
-        Assert.assertEquals(out.toString(), EXPECTED_SUCCESS + item + System.lineSeparator());
+        Assertions.assertEquals(out.toString(), EXPECTED_SUCCESS + item + System.lineSeparator());
     }
 
     @Test
@@ -63,6 +63,6 @@ public class FindItemByIdActionsTest {
 
         userAction.execute(input, tracker);
 
-        Assert.assertEquals(out.toString(), EXPECTED_FAIL);
+        Assertions.assertEquals(out.toString(), EXPECTED_FAIL);
     }
 }
