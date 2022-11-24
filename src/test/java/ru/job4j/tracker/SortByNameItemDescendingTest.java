@@ -17,11 +17,7 @@ public class SortByNameItemDescendingTest {
                 new Item("1"),
                 new Item("2")
         );
-        List<Item> expected  = Arrays.asList(
-                new Item("3"),
-                new Item("2"),
-                new Item("1")
-        );
+        List<Item> expected  = Arrays.asList(items.get(0), items.get(2), items.get(1));
         Collections.sort(items, new SortByNameItemDescending());
         assertThat(items, is(expected));
     }

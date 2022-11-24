@@ -17,13 +17,9 @@ public class SortByNameItemAscendingTest {
                 new Item("1"),
                 new Item("2")
         );
-        List<Item> expected  = Arrays.asList(
-                new Item("1"),
-                new Item("2"),
-                new Item("3")
-        );
+        List<Item> expected  = Arrays.asList(items.get(1), items.get(2), items.get(0));
         Collections.sort(items, new SortByNameItemAscending());
-        assertThat(items, is(expected));
+        assertThat(items.get(0).getId(), is(expected.get(0).getId()));
     }
 
     @Test
