@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
@@ -9,7 +10,9 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Item implements Comparable<Item> {
+    @EqualsAndHashCode.Include
     private int id;
     private String name;
     private LocalDateTime created = LocalDateTime.now();
