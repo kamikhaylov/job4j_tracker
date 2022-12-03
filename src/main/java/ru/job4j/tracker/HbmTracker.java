@@ -11,17 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HbmTracker implements Store, AutoCloseable {
-    private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-            .configure().build();
-    private final SessionFactory sf = new MetadataSources(registry)
-            .buildMetadata().buildSessionFactory();
+    private final StandardServiceRegistry registry;
+    private final SessionFactory sf;
+
+    public HbmTracker() {
+        this.registry = new StandardServiceRegistryBuilder().configure().build();
+        this.sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+    }
 
     @Override
     public void init() {
-        try (Session session = sf.openSession()) {
-            session.beginTransaction();
-            session.getTransaction().commit();
-        }
     }
 
     @Override
@@ -36,71 +35,71 @@ public class HbmTracker implements Store, AutoCloseable {
 
     @Override
     public Item findById(int id) {
-        Item item = null;
+        Item item;
         try (Session session = sf.openSession()) {
             session.beginTransaction();
-            Query<Item> query = session.createQuery(
-                    "FROM item WHERE id = :fId"
-            ).setParameter("fId", id);
-            item = query.uniqueResultOptional().get();
+            Query<Item> query = session
+                    .createQuery("FROM item WHERE id = :fId", Item.class)
+                    .setParameter("fId", id);
+            item = query.uniqueResult();
+            session.getTransaction().commit();
         }
         return item;
     }
 
     @Override
     public List<Item> findAll() {
-        List<Item> items = new ArrayList<>();
+        List<Item> items;
         try (Session session = sf.openSession()) {
             session.beginTransaction();
-            Query query = session.createQuery("FROM item");
-            for (Object o : query.list()) {
-                items.add((Item) o);
-            }
+            Query<Item> query = session
+                    .createQuery("FROM item", Item.class);
+            items = new ArrayList<>(query.list());
+            session.getTransaction().commit();
         }
         return items;
     }
 
     @Override
     public List<Item> findByName(String key) {
-        List<Item> items = new ArrayList<>();
+        List<Item> items;
         try (Session session = sf.openSession()) {
             session.beginTransaction();
-            Query query = session.createQuery(
-                    "FROM item WHERE name LIKE :fName"
-            ).setParameter("fName", key);
-            for (Object o : query.list()) {
-                items.add((Item) o);
-            }
+            Query<Item> query = session
+                    .createQuery("FROM item WHERE name LIKE :fName", Item.class)
+                    .setParameter("fName", key);
+            items = new ArrayList<>(query.list());
+            session.getTransaction().commit();
         }
         return items;
     }
 
     @Override
     public boolean replace(int id, Item item) {
+        int numberOfEntitiesUpdated;
         try (Session session = sf.openSession()) {
             session.beginTransaction();
-            session.createQuery("UPDATE item SET name = :?fName WHERE id = :fId")
+            numberOfEntitiesUpdated = session
+                    .createQuery("UPDATE item SET name = :?fName WHERE id = :fId")
                     .setParameter("fName", item.getName()).setParameter("fId", id)
                     .executeUpdate();
             session.getTransaction().commit();
-            return true;
-        } catch (Exception e) {
-            return false;
         }
+        return numberOfEntitiesUpdated != 0;
     }
 
     @Override
     public boolean delete(int id) {
+        int numberOfEntitiesDeleted;
         try (Session session = sf.openSession()) {
             session.beginTransaction();
-            session.createQuery("DELETE Item WHERE id = :fId")
+            numberOfEntitiesDeleted = session
+                    .createQuery("DELETE Item WHERE id = :fId")
                     .setParameter("fId", id)
                     .executeUpdate();
             session.getTransaction().commit();
-            return true;
-        } catch (Exception e) {
-            return false;
         }
+        return numberOfEntitiesDeleted != 0;
     }
 
     @Override
