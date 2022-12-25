@@ -11,13 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HbmTracker implements Store, AutoCloseable {
-    private final StandardServiceRegistry registry;
-    private final SessionFactory sf;
-
-    public HbmTracker() {
-        this.registry = new StandardServiceRegistryBuilder().configure().build();
-        this.sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-    }
+    private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+            .configure().build();
+    private final SessionFactory sf = new MetadataSources(registry)
+            .buildMetadata().buildSessionFactory();
 
     @Override
     public void init() {
