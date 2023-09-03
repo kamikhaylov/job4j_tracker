@@ -77,7 +77,7 @@ public class HbmTracker implements Store, AutoCloseable {
         try (Session session = sf.openSession()) {
             session.beginTransaction();
             numberOfEntitiesUpdated = session
-                    .createQuery("UPDATE Item SET name = :?fName WHERE id = :fId")
+                    .createQuery("UPDATE Item SET name = :fName WHERE id = :fId")
                     .setParameter("fName", item.getName()).setParameter("fId", id)
                     .executeUpdate();
             session.getTransaction().commit();
