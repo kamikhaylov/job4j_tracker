@@ -36,7 +36,7 @@ public class HbmTracker implements Store, AutoCloseable {
         try (Session session = sf.openSession()) {
             session.beginTransaction();
             Query<Item> query = session
-                    .createQuery("FROM item WHERE id = :fId", Item.class)
+                    .createQuery("FROM Item WHERE id = :fId", Item.class)
                     .setParameter("fId", id);
             item = query.uniqueResult();
             session.getTransaction().commit();
@@ -50,7 +50,7 @@ public class HbmTracker implements Store, AutoCloseable {
         try (Session session = sf.openSession()) {
             session.beginTransaction();
             Query<Item> query = session
-                    .createQuery("FROM item", Item.class);
+                    .createQuery("FROM Item", Item.class);
             items = new ArrayList<>(query.list());
             session.getTransaction().commit();
         }
@@ -63,7 +63,7 @@ public class HbmTracker implements Store, AutoCloseable {
         try (Session session = sf.openSession()) {
             session.beginTransaction();
             Query<Item> query = session
-                    .createQuery("FROM item WHERE name LIKE :fName", Item.class)
+                    .createQuery("FROM Item WHERE name LIKE :fName", Item.class)
                     .setParameter("fName", key);
             items = new ArrayList<>(query.list());
             session.getTransaction().commit();
@@ -77,7 +77,7 @@ public class HbmTracker implements Store, AutoCloseable {
         try (Session session = sf.openSession()) {
             session.beginTransaction();
             numberOfEntitiesUpdated = session
-                    .createQuery("UPDATE item SET name = :?fName WHERE id = :fId")
+                    .createQuery("UPDATE Item SET name = :?fName WHERE id = :fId")
                     .setParameter("fName", item.getName()).setParameter("fId", id)
                     .executeUpdate();
             session.getTransaction().commit();
