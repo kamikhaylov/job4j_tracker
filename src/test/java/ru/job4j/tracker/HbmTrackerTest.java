@@ -58,6 +58,11 @@ public class HbmTrackerTest {
     @Test
     public void whenFindAll() {
         try (HbmTracker tracker = new HbmTracker()) {
+            Item item = new Item();
+            item.setName("test1");
+            tracker.add(item);
+            item.setName("test2");
+            tracker.add(item);
             List<Item> result = tracker.findAll();
             Assertions.assertNotNull(result);
             Assertions.assertTrue(result.size() > 0);
